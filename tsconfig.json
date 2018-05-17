@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "sourceMap": true,
+        "watch": true,
+        "outDir": "js",
+        "strictNullChecks": true, 
+        "noImplicitAny": true,
+        "removeComments": true,
+        "module": "commonjs",
+        "moduleResolution": "node"
+    },
+    "files": [
+        "./app/app.ts"
+    ]
+}
