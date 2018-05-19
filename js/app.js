@@ -1,4 +1,4 @@
-var HelloTypescript = (function () {
+var HelloTypescript = /** @class */ (function () {
     function HelloTypescript(message) {
         this.message = message;
     }

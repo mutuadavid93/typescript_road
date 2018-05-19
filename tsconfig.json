@@ -6,11 +6,18 @@
         "outDir": "js",
         "strictNullChecks": true, 
         "noImplicitAny": true,
-        "removeComments": true,
+        /*"removeComments": true,*/
         "module": "commonjs",
         "moduleResolution": "node"
     },
-    "files": [
+
+    // app.ts is the entry point.
+    /*"files": [
         "./app/app.ts"
+    ]*/
+
+    // Processes All Typescript Files.
+    "includes": [
+        "./**/**/"
     ]
 }
