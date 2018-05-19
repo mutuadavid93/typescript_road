@@ -5,12 +5,7 @@
 //
 // The numeric values Behave like Array indices;
 // @Example; 
-var Category;
-(function (Category) {
-    Category[Category["HipHop"] = 0] = "HipHop";
-    Category[Category["Blues"] = 1] = "Blues";
-    Category[Category["Pop"] = 2] = "Pop";
-})(Category || (Category = {})); // 0, 1, 2
+// enum Category { HipHop, Blues, Pop } // 0, 1, 2
 // Another example, Increments from the value given to the first item.
 var Movies;
 (function (Movies) {
@@ -26,11 +21,11 @@ var HorrorMovies;
     HorrorMovies[HorrorMovies["GOT"] = 47] = "GOT";
 })(HorrorMovies || (HorrorMovies = {}));
 // Declare a Variable to be an enum explicitly:
-var firstCategory = Category.HipHop;
+// let firstCategory: Category = Category.HipHop;
 // Printing out the variable, value is the Number that the enum represents;
-console.log(firstCategory); // 0
+// console.log(firstCategory); // 0
 // Access the Value using Indices.
-console.log(Category[firstCategory]); // HipHop
+// console.log(Category[firstCategory]); // HipHop
 /***************************************
 *   Arrays.
 ***************************************/

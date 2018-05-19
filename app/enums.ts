@@ -7,7 +7,7 @@
 // The numeric values Behave like Array indices;
 
 // @Example; 
-enum Category { HipHop, Blues, Pop } // 0, 1, 2
+// enum Category { HipHop, Blues, Pop } // 0, 1, 2
 
 // Another example, Increments from the value given to the first item.
 enum Movies { Zero07 = 4, Lost, Bawne } // 4, 5, 6
@@ -16,13 +16,13 @@ enum Movies { Zero07 = 4, Lost, Bawne } // 4, 5, 6
 enum HorrorMovies { "Vampire Diaries" = 90, Phishy = 13, GOT = 47 }
 
 // Declare a Variable to be an enum explicitly:
-let firstCategory: Category = Category.HipHop;
+// let firstCategory: Category = Category.HipHop;
 
 // Printing out the variable, value is the Number that the enum represents;
-console.log(firstCategory); // 0
+// console.log(firstCategory); // 0
 
 // Access the Value using Indices.
-console.log(Category[firstCategory]); // HipHop
+// console.log(Category[firstCategory]); // HipHop
 
 
 
