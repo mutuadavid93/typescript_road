@@ -4,17 +4,29 @@ function GetAllBooks(): any[] {
     // Book List.
     // NB: enum Property Value Category.BasketBall = Number it's enums value 0.
     let books = [
-        {title: 'Tear Drop', author: 'Giannis Antetokunmpo', 
-        available: true, category: Category.BasketBall},
+        {
+            id: 1,
+            title: 'Tear Drop', author: 'Giannis Antetokunmpo', 
+            available: true, category: Category.BasketBall
+        },
 
-        {title: 'Long Travel', author: 'Lillard Damian', 
-        available: false, category: Category.IceHockey},
+        {
+            id: 2,
+            title: 'Long Travel', author: 'Lillard Damian', 
+            available: false, category: Category.IceHockey
+        },
 
-        {title: 'Heavy Dunk', author: 'James Harden', 
-        available: true, category: Category.Tennis},
+        {
+            id: 3,
+            title: 'Heavy Dunk', author: 'James Harden', 
+            available: true, category: Category.Tennis
+        },
 
-        {title: 'Deep Bucket', author: 'Clay Thompson', 
-        available: true, category: Category.BasketBall},
+        {
+            id: 4,
+            title: 'Deep Bucket', author: 'Clay Thompson', 
+            available: true, category: Category.BasketBall
+        },
     ];
 
     return books;
@@ -68,5 +80,37 @@ function logBookTitle(titles: string[]): void {
     }
 }
 
+
+// Get a Book by ID.
+function GetBookByID(id: number) {
+    const allBooks = GetAllBooks();
+
+    // Return Only the first Book. i.e. $top=1
+    let bookID: number = allBooks.filter( book => book.id === id)[0];
+    
+    return bookID;
+}
+
+
+// Create a customer Id. Demo: Function Types;
+function CreateCustomerID(name: string, id: number): string {
+    let custIdentity = `${name}_${id}`;
+    return custIdentity;
+}
+
+//******************* Temp Separator *****************
+
+
+// Function Type Definition;
+let IdGenerator: (chars: string, nums: number) => string;
+IdGenerator = CreateCustomerID;
+
+// Quick Implementation Using Function Type.
+let custID: string = IdGenerator('Jerry', 1240);
+console.log(custID);
+
 let basketBallBooks: string[] = GetBookTitleByCategory(Category.BasketBall);
-logBookTitle(basketBallBooks);
+
+basketBallBooks.forEach((value:string, index:number, basketBallBooks) => {
+    console.log(`${++index}. ${value}`);
+});

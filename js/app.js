@@ -2,14 +2,26 @@ function GetAllBooks() {
     // Book List.
     // NB: enum Property Value Category.BasketBall = Number it's enums value 0.
     var books = [
-        { title: 'Tear Drop', author: 'Giannis Antetokunmpo',
-            available: true, category: Category.BasketBall },
-        { title: 'Long Travel', author: 'Lillard Damian',
-            available: false, category: Category.IceHockey },
-        { title: 'Heavy Dunk', author: 'James Harden',
-            available: true, category: Category.Tennis },
-        { title: 'Deep Bucket', author: 'Clay Thompson',
-            available: true, category: Category.BasketBall },
+        {
+            id: 1,
+            title: 'Tear Drop', author: 'Giannis Antetokunmpo',
+            available: true, category: Category.BasketBall
+        },
+        {
+            id: 2,
+            title: 'Long Travel', author: 'Lillard Damian',
+            available: false, category: Category.IceHockey
+        },
+        {
+            id: 3,
+            title: 'Heavy Dunk', author: 'James Harden',
+            available: true, category: Category.Tennis
+        },
+        {
+            id: 4,
+            title: 'Deep Bucket', author: 'Clay Thompson',
+            available: true, category: Category.BasketBall
+        },
     ];
     return books;
 }
@@ -58,6 +70,27 @@ function logBookTitle(titles) {
         console.log(counter + ". " + title);
     }
 }
+// Get a Book by ID.
+function GetBookByID(id) {
+    var allBooks = GetAllBooks();
+    // Return Only the first Book. i.e. $top=1
+    var bookID = allBooks.filter(function (book) { return book.id === id; })[0];
+    return bookID;
+}
+// Create a customer Id. Demo: Function Types;
+function CreateCustomerID(name, id) {
+    var custIdentity = name + "_" + id;
+    return custIdentity;
+}
+//******************* Temp Separator *****************
+// Function Type Definition;
+var IdGenerator;
+IdGenerator = CreateCustomerID;
+// Quick Implementation Using Function Type.
+var custID = IdGenerator('Jerry', 1240);
+console.log(custID);
 var basketBallBooks = GetBookTitleByCategory(Category.BasketBall);
-logBookTitle(basketBallBooks);
+basketBallBooks.forEach(function (value, index, basketBallBooks) {
+    console.log(++index + ". " + value);
+});
 //# sourceMappingURL=app.js.map
