@@ -68,4 +68,33 @@ boneCollector = boneDriers;
 // Consume it somewhere.
 var msg = boneCollector("Big Drier");
 // msg === "Crystal Methed Camoed Big Drier!";
+// Default and Optional Parameters.
+// Optional Params MUST be declared last in the list of 
+// function Parameters.
+// @Example;
+function hollowWrath(color, density) { }
+// NB: if a Default Parameter appears last in the function's 
+// list of params, then it's treated as optional.
+// @Example;
+function shapeShifters(eyecolor, age) {
+    if (age === void 0) { age = 50; }
+    return age;
+}
+// NB: Default Params can also be Expressions;
+// @Example;
+var bloodThirsts = function (age) {
+    if (age === void 0) { age = shapeShifters('Blue'); }
+    console.log("Shape Shifters and Blood Thirsts are aged " + age);
+}();
+// Rest Parameters;
+//
+// Gulp the rest of the Remaining Function's Params, thus they 
+// should be as well be last in the Params List: Best Practice 
+// not requirement.
+function getTheHollowBones(name) {
+    var oldbones = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        oldbones[_i - 1] = arguments[_i];
+    }
+}
 //# sourceMappingURL=Functions.js.map

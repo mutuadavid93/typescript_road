@@ -48,7 +48,9 @@ var Category;
     Category[Category["Tennis"] = 3] = "Tennis";
 })(Category || (Category = {}));
 // Filter Title By Category
+// Demo: Default Params.
 var GetBookTitleByCategory = function (categoryFilter) {
+    if (categoryFilter === void 0) { categoryFilter = Category.BasketBall; }
     console.log("Gettings books in category: " + Category[categoryFilter]);
     var allBooks = GetAllBooks();
     var filteredTitles = [];
@@ -74,22 +76,50 @@ function logBookTitle(titles) {
 function GetBookByID(id) {
     var allBooks = GetAllBooks();
     // Return Only the first Book. i.e. $top=1
-    var bookID = allBooks.filter(function (book) { return book.id === id; })[0];
-    return bookID;
+    return allBooks.filter(function (book) { return book.id === id; })[0];
 }
 // Create a customer Id. Demo: Function Types;
 function CreateCustomerID(name, id) {
-    var custIdentity = name + "_" + id;
+    var custIdentity = "Customer ID: " + name + "_" + id;
     return custIdentity;
 }
+// Create a Customer: Demo Optional Parameters;
+function CreateCustomer(name, age, city) {
+    console.log("Creating customer " + name + " ...");
+    (age) ? console.log("Age: " + age) : '';
+    (city) ? console.log("City: " + city) : '';
+}
+// Checkout Books: Demo Rest Params.
+function CheckoutBooks(customer) {
+    var bookIDs = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        bookIDs[_i - 1] = arguments[_i];
+    }
+    console.log("Checking out books for " + customer);
+    var booksCheckedout = [];
+    for (var _a = 0, bookIDs_1 = bookIDs; _a < bookIDs_1.length; _a++) {
+        var id = bookIDs_1[_a];
+        var book = GetBookByID(id);
+        if (book.available) {
+            booksCheckedout.push(book.title);
+        }
+    }
+    return booksCheckedout;
+}
 //******************* Temp Separator *****************
+// My Books.
+var myBooks = CheckoutBooks('Niclaus', 1, 3, 4);
+myBooks.forEach(function (title) { return console.log(title); });
+CreateCustomer('Matts'); // Matts.
+// CreateCustomer('Matts', 34, 'Mumias'); // logs everything.
 // Function Type Definition;
 var IdGenerator;
 IdGenerator = CreateCustomerID;
 // Quick Implementation Using Function Type.
 var custID = IdGenerator('Jerry', 1240);
 console.log(custID);
-var basketBallBooks = GetBookTitleByCategory(Category.BasketBall);
+// Make use of the Default Category Param.
+var basketBallBooks = GetBookTitleByCategory();
 basketBallBooks.forEach(function (value, index, basketBallBooks) {
     console.log(++index + ". " + value);
 });

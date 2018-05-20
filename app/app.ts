@@ -53,7 +53,8 @@ function logFirstAvailable (books: any[]): void {
 enum Category { BasketBall, IceHockey, HandBall, Tennis }
 
 // Filter Title By Category
-let GetBookTitleByCategory = (categoryFilter: Category): Array<string> => {
+// Demo: Default Params.
+let GetBookTitleByCategory = (categoryFilter: Category = Category.BasketBall): Array<string> => {
 
     console.log(`Gettings books in category: ${Category[categoryFilter]}`);
 
@@ -86,20 +87,53 @@ function GetBookByID(id: number) {
     const allBooks = GetAllBooks();
 
     // Return Only the first Book. i.e. $top=1
-    let bookID: number = allBooks.filter( book => book.id === id)[0];
-    
-    return bookID;
+    return allBooks.filter( book => book.id === id)[0];
 }
 
 
 // Create a customer Id. Demo: Function Types;
 function CreateCustomerID(name: string, id: number): string {
-    let custIdentity = `${name}_${id}`;
+    let custIdentity = `Customer ID: ${name}_${id}`;
     return custIdentity;
 }
 
+
+// Create a Customer: Demo Optional Parameters;
+function CreateCustomer(name: string, age?: number, city?: string): void {
+    console.log(`Creating customer ${name} ...`);
+
+    (age) ? console.log(`Age: ${age}`) : '';
+    (city) ? console.log(`City: ${city}`) : '';
+}
+
+
+// Checkout Books: Demo Rest Params.
+function CheckoutBooks(customer: string, ...bookIDs: Array<number>): Array<string> {
+
+    console.log(`Checking out books for ${customer}`);
+
+    let booksCheckedout: string[] = [];
+
+    for (let id of bookIDs) {
+        let book = GetBookByID(id);
+
+        if(book.available) {
+            booksCheckedout.push(book.title);
+        }
+    }
+
+    return booksCheckedout;
+}
+
+
 //******************* Temp Separator *****************
 
+// My Books.
+let myBooks: Array<string> = CheckoutBooks('Niclaus', 1, 3, 4);
+myBooks.forEach((title) => console.log(title));
+
+CreateCustomer('Matts'); // Matts.
+// CreateCustomer('Matts', 34, 'Mumias'); // logs everything.
 
 // Function Type Definition;
 let IdGenerator: (chars: string, nums: number) => string;
@@ -109,7 +143,8 @@ IdGenerator = CreateCustomerID;
 let custID: string = IdGenerator('Jerry', 1240);
 console.log(custID);
 
-let basketBallBooks: string[] = GetBookTitleByCategory(Category.BasketBall);
+// Make use of the Default Category Param.
+let basketBallBooks: string[] = GetBookTitleByCategory();
 
 basketBallBooks.forEach((value:string, index:number, basketBallBooks) => {
     console.log(`${++index}. ${value}`);
