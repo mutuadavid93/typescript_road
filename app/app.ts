@@ -25,7 +25,7 @@ function GetAllBooks(): any[] {
         {
             id: 4,
             title: 'Deep Bucket', author: 'Clay Thompson', 
-            available: true, category: Category.BasketBall
+            available: false, category: Category.BasketBall
         },
     ];
 
@@ -126,7 +126,47 @@ function CheckoutBooks(customer: string, ...bookIDs: Array<number>): Array<strin
 }
 
 
+// Return Book Titles Based on Author Name or Whether it's Checkout.
+// Demo: Function Overloading.
+
+// Overload Signatures.
+function GetTitle(author: string): Array<string>;
+function GetTitle(available: boolean): Array<string>;
+
+// Get Book Titles Implemantation;
+function GetTitle(bookProperty: string | boolean): Array<string> {
+    const allBooks = GetAllBooks();
+    const foundTitles: Array<string> = [];
+
+    // Using Type Guards
+    if(typeof bookProperty == 'string') {
+        for (let book of allBooks) {
+            if(book.author === bookProperty){
+                foundTitles.push(book.title);
+            }
+        }
+    }
+    else if(typeof bookProperty == 'boolean') {
+        for (let book of allBooks) {
+            if(book.available === bookProperty){
+                foundTitles.push(book.title);
+            }
+        }
+    }
+
+    return foundTitles;
+}
+
+
 //******************* Temp Separator *****************
+
+// Now Display the Fetched Book Title using Overload 1.
+let iceHockeyBooks = GetTitle('Lillard Damian');
+iceHockeyBooks.forEach(title => console.log(`Authored Book Title: ${title}`));
+
+// Now Display the Fetched Book Title using Overload 2.
+let checkedOutBooks = GetTitle(false);
+checkedOutBooks.forEach(title => console.log(`Checkedout Book Title: ${title}`));
 
 // My Books.
 let myBooks: Array<string> = CheckoutBooks('Niclaus', 1, 3, 4);

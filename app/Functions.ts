@@ -167,3 +167,39 @@ function shapeShifters(eyecolor: string, age: number = 50): number {
 function getTheHollowBones(name: string, ...oldbones: Array<number>): void {
 
 }
+
+
+
+
+
+
+
+// Function Overloads:
+
+// Defn: Multiple Function Definitions But Only one Implementation.
+
+// That single Implementation MUST use Type Guards to determine 
+// which overload was called and what action to Perform Based on that.
+
+// @Example, Function Definition I.
+function GetParksTitles(leader: string): Array<string>;
+
+// @Example, Function Definition II.
+function GetParksTitles(living: boolean): Array<string>;
+
+// @Example, The Implementaion Function.
+function GetParksTitles(parkAttribute: string | boolean): Array<string> {
+    
+    let someResults: Array<string> = [];
+
+    if(typeof parkAttribute == 'string') {
+        // do something.
+        someResults.unshift("Man Eaters");
+    }
+    else if(typeof parkAttribute == 'boolean') {
+        // do something
+        someResults.push('Available');
+    }
+
+    return someResults;
+}

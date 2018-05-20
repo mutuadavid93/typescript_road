@@ -97,4 +97,17 @@ function getTheHollowBones(name) {
         oldbones[_i - 1] = arguments[_i];
     }
 }
+// @Example, The Implementaion Function.
+function GetParksTitles(parkAttribute) {
+    var someResults = [];
+    if (typeof parkAttribute == 'string') {
+        // do something.
+        someResults.unshift("Man Eaters");
+    }
+    else if (typeof parkAttribute == 'boolean') {
+        // do something
+        someResults.push('Available');
+    }
+    return someResults;
+}
 //# sourceMappingURL=Functions.js.map

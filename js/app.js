@@ -20,7 +20,7 @@ function GetAllBooks() {
         {
             id: 4,
             title: 'Deep Bucket', author: 'Clay Thompson',
-            available: true, category: Category.BasketBall
+            available: false, category: Category.BasketBall
         },
     ];
     return books;
@@ -106,7 +106,36 @@ function CheckoutBooks(customer) {
     }
     return booksCheckedout;
 }
+// Get Book Titles Implemantation;
+function GetTitle(bookProperty) {
+    var allBooks = GetAllBooks();
+    var foundTitles = [];
+    // Using Type Guards
+    if (typeof bookProperty == 'string') {
+        for (var _i = 0, allBooks_2 = allBooks; _i < allBooks_2.length; _i++) {
+            var book = allBooks_2[_i];
+            if (book.author === bookProperty) {
+                foundTitles.push(book.title);
+            }
+        }
+    }
+    else if (typeof bookProperty == 'boolean') {
+        for (var _a = 0, allBooks_3 = allBooks; _a < allBooks_3.length; _a++) {
+            var book = allBooks_3[_a];
+            if (book.available === bookProperty) {
+                foundTitles.push(book.title);
+            }
+        }
+    }
+    return foundTitles;
+}
 //******************* Temp Separator *****************
+// Now Display the Fetched Book Title using Overload 1.
+var iceHockeyBooks = GetTitle('Lillard Damian');
+iceHockeyBooks.forEach(function (title) { return console.log("Authored Book Title: " + title); });
+// Now Display the Fetched Book Title using Overload 2.
+var checkedOutBooks = GetTitle(false);
+checkedOutBooks.forEach(function (title) { return console.log("Checkedout Book Title: " + title); });
 // My Books.
 var myBooks = CheckoutBooks('Niclaus', 1, 3, 4);
 myBooks.forEach(function (title) { return console.log(title); });
