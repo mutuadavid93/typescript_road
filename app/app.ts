@@ -1,6 +1,6 @@
 
 import { Category } from './libAppEnums';
-import { Book, DamagedLogger } from './libAppInterfaces';
+import { Book, DamagedLogger, Author, Librarian } from './libAppInterfaces';
 
 
 function GetAllBooks(): Book[] {
@@ -170,8 +170,10 @@ function printBook(book: Book): void {
 
 //**************************************************
 
+/*
 // Declare an Object that implicitly implements Book interface, 
 // through Duck Typing.
+
 let myBook = {
     id: 5,
     title: 'Pride and Prejudice',
@@ -200,3 +202,8 @@ logDamage = (damage: string) => {
 }
 
 logDamage('latte stains');
+
+*/
+
+// NB: the imported Interfaces contain their Specific Props as 
+// well as those inherited from other Interfaces.

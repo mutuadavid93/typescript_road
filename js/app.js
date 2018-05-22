@@ -131,29 +131,40 @@ function printBook(book) {
     console.log(book.title + " by " + book.author);
 }
 //**************************************************
-// Declare an Object that implicitly implements Book interface, 
+/*
+// Declare an Object that implicitly implements Book interface,
 // through Duck Typing.
-var myBook = {
+
+let myBook = {
     id: 5,
     title: 'Pride and Prejudice',
     author: 'Janefer Fox',
     available: true,
-    category: libAppEnums_1.Category.IceHockey,
+    category: Category.IceHockey,
+
     // Additional properties outside Book's Interface.
     year: '1827',
     copies: 3,
+
     // implement the markDamaged Function Anyways.
-    markDamaged: function (reason) {
-        console.log("Damaged: " + reason);
+    markDamaged: (reason: string): void => {
+        console.log(`Damaged: ${reason}`);
     }
 };
+
 //  Try to pass it where a Book type is expected, works!!.
 printBook(myBook);
 myBook.markDamaged('missing one page');
+
 // Test DamagedLogger Interface for a Function Type.
-var logDamage;
-logDamage = function (damage) {
-    console.log("Damage reported: " + damage);
-};
+let logDamage: DamagedLogger;
+logDamage = (damage: string) => {
+    console.log(`Damage reported: ${damage}`);
+}
+
 logDamage('latte stains');
+
+*/
+// NB: the imported Interfaces contain their Specific Props as 
+// well as those inherited from other Interfaces.
 //# sourceMappingURL=app.js.map

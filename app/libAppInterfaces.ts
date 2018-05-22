@@ -19,5 +19,20 @@ interface DamagedLogger {
     (reason: string): void;
 }
 
+interface Person {
+    name: string;
+    email: string;
+}
+
+// Demonstrate extending interfaces.
+interface Author extends Person {
+    numBooksPublished: number;
+}
+
+interface Librarian extends Person {
+    department: string;
+    assistCustomer: (custName: string) => void;
+}
+
 // exports below here.
-export { Book, DamagedLogger };
+export { Book, DamagedLogger, Author, Librarian };
