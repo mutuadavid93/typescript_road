@@ -1,7 +1,7 @@
 
 import { Category } from './libAppEnums';
 import { Book, DamagedLogger, Author, Librarian } from './libAppInterfaces';
-
+import { UniversityLibrarian } from './libAppClasses';
 
 function GetAllBooks(): Book[] {
 
@@ -207,3 +207,8 @@ logDamage('latte stains');
 
 // NB: the imported Interfaces contain their Specific Props as 
 // well as those inherited from other Interfaces.
+
+let favLibrarian: Librarian = new UniversityLibrarian();
+favLibrarian.name = 'Ben';
+
+favLibrarian.assistCustomer('Mfupa');

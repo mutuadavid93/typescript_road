@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var libAppEnums_1 = require("./libAppEnums");
+var libAppClasses_1 = require("./libAppClasses");
 function GetAllBooks() {
     // Book List.
     // NB: enum Property Value Category.BasketBall = Number it's enums value 0.
@@ -167,4 +168,7 @@ logDamage('latte stains');
 */
 // NB: the imported Interfaces contain their Specific Props as 
 // well as those inherited from other Interfaces.
+var favLibrarian = new libAppClasses_1.UniversityLibrarian();
+favLibrarian.name = 'Ben';
+favLibrarian.assistCustomer('Mfupa');
 //# sourceMappingURL=app.js.map
