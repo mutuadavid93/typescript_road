@@ -85,3 +85,33 @@ let awesomeMagicGicGen: StringMagicGenerator;
 awesomeMagicGicGen = (name: string, id: number): string => {
     return (`${name}_${id}`);
 }
+
+
+
+
+
+
+
+// Extending Interfaces.
+//
+
+// The extending Intefaces contains all of the Parent's Properties
+// and Methods too.
+
+// @Example,
+interface Orange {
+    seedSize: string;
+}
+
+interface Mangoe {
+    isRipe: boolean;
+}
+
+
+// Fruit Interface inherits Orange and Mangoe Interfaces.
+interface Fruit extends Orange, Mangoe {
+    juiceVolume: number;
+}
+
+// NB: Any variable which implements Fruit Interface, MUST implement 
+// three properties i.e. seedSize, isRipe and juiceVolume.
