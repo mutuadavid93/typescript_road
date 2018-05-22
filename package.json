@@ -8,5 +8,8 @@
     "start": "lite-server"
   },
   "author": "David Mutua",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "systemjs": "^0.21.3"
+  }
 }

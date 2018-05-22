@@ -1,8 +1,15 @@
 
-function GetAllBooks(): any[] {
+import { Category } from './libAppEnums';
+import { Book, DamagedLogger } from './libAppInterfaces';
+
+
+function GetAllBooks(): Book[] {
 
     // Book List.
     // NB: enum Property Value Category.BasketBall = Number it's enums value 0.
+    //
+    // Since we are explicitly returning an Array of Books, Means each Object in the 
+    // books[] below must implement the interface Book.
     let books = [
         {
             id: 1,
@@ -49,8 +56,7 @@ function logFirstAvailable (books: any[]): void {
     console.log(`First Available Book: ${firstAvailableBkTitle}`);
 } 
 
-// Use enums to Categorize the Books.
-enum Category { BasketBall, IceHockey, HandBall, Tennis }
+
 
 // Filter Title By Category
 // Demo: Default Params.
@@ -83,7 +89,7 @@ function logBookTitle(titles: string[]): void {
 
 
 // Get a Book by ID.
-function GetBookByID(id: number) {
+function GetBookByID(id: number): Book {
     const allBooks = GetAllBooks();
 
     // Return Only the first Book. i.e. $top=1
@@ -91,14 +97,14 @@ function GetBookByID(id: number) {
 }
 
 
-// Create a customer Id. Demo: Function Types;
+// Create a customer Id. Demo: Function Types
 function CreateCustomerID(name: string, id: number): string {
     let custIdentity = `Customer ID: ${name}_${id}`;
     return custIdentity;
 }
 
 
-// Create a Customer: Demo Optional Parameters;
+// Create a Customer: Demo Optional Parameters
 function CreateCustomer(name: string, age?: number, city?: string): void {
     console.log(`Creating customer ${name} ...`);
 
@@ -158,34 +164,39 @@ function GetTitle(bookProperty: string | boolean): Array<string> {
 }
 
 
-//******************* Temp Separator *****************
+function printBook(book: Book): void {
+    console.log(`${book.title} by ${book.author}`);
+}
 
-// Now Display the Fetched Book Title using Overload 1.
-let iceHockeyBooks = GetTitle('Lillard Damian');
-iceHockeyBooks.forEach(title => console.log(`Authored Book Title: ${title}`));
+//**************************************************
 
-// Now Display the Fetched Book Title using Overload 2.
-let checkedOutBooks = GetTitle(false);
-checkedOutBooks.forEach(title => console.log(`Checkedout Book Title: ${title}`));
+// Declare an Object that implicitly implements Book interface, 
+// through Duck Typing.
+let myBook = {
+    id: 5,
+    title: 'Pride and Prejudice',
+    author: 'Janefer Fox',
+    available: true,
+    category: Category.IceHockey,
 
-// My Books.
-let myBooks: Array<string> = CheckoutBooks('Niclaus', 1, 3, 4);
-myBooks.forEach((title) => console.log(title));
+    // Additional properties outside Book's Interface.
+    year: '1827',
+    copies: 3,
 
-CreateCustomer('Matts'); // Matts.
-// CreateCustomer('Matts', 34, 'Mumias'); // logs everything.
+    // implement the markDamaged Function Anyways.
+    markDamaged: (reason: string): void => {
+        console.log(`Damaged: ${reason}`);
+    }
+};
 
-// Function Type Definition;
-let IdGenerator: (chars: string, nums: number) => string;
-IdGenerator = CreateCustomerID;
+//  Try to pass it where a Book type is expected, works!!.
+printBook(myBook);
+myBook.markDamaged('missing one page');
 
-// Quick Implementation Using Function Type.
-let custID: string = IdGenerator('Jerry', 1240);
-console.log(custID);
+// Test DamagedLogger Interface for a Function Type.
+let logDamage: DamagedLogger;
+logDamage = (damage: string) => {
+    console.log(`Damage reported: ${damage}`);
+}
 
-// Make use of the Default Category Param.
-let basketBallBooks: string[] = GetBookTitleByCategory();
-
-basketBallBooks.forEach((value:string, index:number, basketBallBooks) => {
-    console.log(`${++index}. ${value}`);
-});
+logDamage('latte stains');

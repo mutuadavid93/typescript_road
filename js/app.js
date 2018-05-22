@@ -1,26 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var libAppEnums_1 = require("./libAppEnums");
 function GetAllBooks() {
     // Book List.
     // NB: enum Property Value Category.BasketBall = Number it's enums value 0.
+    //
+    // Since we are explicitly returning an Array of Books, Means each Object in the 
+    // books[] below must implement the interface Book.
     var books = [
         {
             id: 1,
             title: 'Tear Drop', author: 'Giannis Antetokunmpo',
-            available: true, category: Category.BasketBall
+            available: true, category: libAppEnums_1.Category.BasketBall
         },
         {
             id: 2,
             title: 'Long Travel', author: 'Lillard Damian',
-            available: false, category: Category.IceHockey
+            available: false, category: libAppEnums_1.Category.IceHockey
         },
         {
             id: 3,
             title: 'Heavy Dunk', author: 'James Harden',
-            available: true, category: Category.Tennis
+            available: true, category: libAppEnums_1.Category.Tennis
         },
         {
             id: 4,
             title: 'Deep Bucket', author: 'Clay Thompson',
-            available: false, category: Category.BasketBall
+            available: false, category: libAppEnums_1.Category.BasketBall
         },
     ];
     return books;
@@ -39,19 +45,11 @@ function logFirstAvailable(books) {
     console.log("Total Books: " + numberOfBooks);
     console.log("First Available Book: " + firstAvailableBkTitle);
 }
-// Use enums to Categorize the Books.
-var Category;
-(function (Category) {
-    Category[Category["BasketBall"] = 0] = "BasketBall";
-    Category[Category["IceHockey"] = 1] = "IceHockey";
-    Category[Category["HandBall"] = 2] = "HandBall";
-    Category[Category["Tennis"] = 3] = "Tennis";
-})(Category || (Category = {}));
 // Filter Title By Category
 // Demo: Default Params.
 var GetBookTitleByCategory = function (categoryFilter) {
-    if (categoryFilter === void 0) { categoryFilter = Category.BasketBall; }
-    console.log("Gettings books in category: " + Category[categoryFilter]);
+    if (categoryFilter === void 0) { categoryFilter = libAppEnums_1.Category.BasketBall; }
+    console.log("Gettings books in category: " + libAppEnums_1.Category[categoryFilter]);
     var allBooks = GetAllBooks();
     var filteredTitles = [];
     // Compare the items categories.
@@ -78,12 +76,12 @@ function GetBookByID(id) {
     // Return Only the first Book. i.e. $top=1
     return allBooks.filter(function (book) { return book.id === id; })[0];
 }
-// Create a customer Id. Demo: Function Types;
+// Create a customer Id. Demo: Function Types
 function CreateCustomerID(name, id) {
     var custIdentity = "Customer ID: " + name + "_" + id;
     return custIdentity;
 }
-// Create a Customer: Demo Optional Parameters;
+// Create a Customer: Demo Optional Parameters
 function CreateCustomer(name, age, city) {
     console.log("Creating customer " + name + " ...");
     (age) ? console.log("Age: " + age) : '';
@@ -129,27 +127,33 @@ function GetTitle(bookProperty) {
     }
     return foundTitles;
 }
-//******************* Temp Separator *****************
-// Now Display the Fetched Book Title using Overload 1.
-var iceHockeyBooks = GetTitle('Lillard Damian');
-iceHockeyBooks.forEach(function (title) { return console.log("Authored Book Title: " + title); });
-// Now Display the Fetched Book Title using Overload 2.
-var checkedOutBooks = GetTitle(false);
-checkedOutBooks.forEach(function (title) { return console.log("Checkedout Book Title: " + title); });
-// My Books.
-var myBooks = CheckoutBooks('Niclaus', 1, 3, 4);
-myBooks.forEach(function (title) { return console.log(title); });
-CreateCustomer('Matts'); // Matts.
-// CreateCustomer('Matts', 34, 'Mumias'); // logs everything.
-// Function Type Definition;
-var IdGenerator;
-IdGenerator = CreateCustomerID;
-// Quick Implementation Using Function Type.
-var custID = IdGenerator('Jerry', 1240);
-console.log(custID);
-// Make use of the Default Category Param.
-var basketBallBooks = GetBookTitleByCategory();
-basketBallBooks.forEach(function (value, index, basketBallBooks) {
-    console.log(++index + ". " + value);
-});
+function printBook(book) {
+    console.log(book.title + " by " + book.author);
+}
+//**************************************************
+// Declare an Object that implicitly implements Book interface, 
+// through Duck Typing.
+var myBook = {
+    id: 5,
+    title: 'Pride and Prejudice',
+    author: 'Janefer Fox',
+    available: true,
+    category: libAppEnums_1.Category.IceHockey,
+    // Additional properties outside Book's Interface.
+    year: '1827',
+    copies: 3,
+    // implement the markDamaged Function Anyways.
+    markDamaged: function (reason) {
+        console.log("Damaged: " + reason);
+    }
+};
+//  Try to pass it where a Book type is expected, works!!.
+printBook(myBook);
+myBook.markDamaged('missing one page');
+// Test DamagedLogger Interface for a Function Type.
+var logDamage;
+logDamage = function (damage) {
+    console.log("Damage reported: " + damage);
+};
+logDamage('latte stains');
 //# sourceMappingURL=app.js.map

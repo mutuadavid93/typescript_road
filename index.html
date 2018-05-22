@@ -4,13 +4,26 @@
         <title>Typescript -- In Depth</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 
 
-        <div>TODO write content</div>
+        <div>Library Management System</div>
 
-        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="node_modules/systemjs/dist/system.js"></script>
+        <script>
+            System.config({
+                meta: {
+                    format: 'cjs'
+                },
+                packages: {
+                    '.': {
+                        defaultExtension: 'js'
+                    }
+                }
+            });
+            System.import ( './js/app.js' );
+        </script>
     </body>
 </html>

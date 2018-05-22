@@ -12,12 +12,12 @@
     },
 
     // app.ts is the entry point.
-    /*"files": [
+    "files": [
         "./app/app.ts"
-    ]*/
+    ]
 
     // Processes All Typescript Files.
-    "includes": [
-        "./**/**/"
-    ]
+    /*"includes": [
+        // "./**/ //**/ 
+    /*]*/
 }
