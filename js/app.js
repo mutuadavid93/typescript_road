@@ -166,13 +166,24 @@ logDamage = (damage: string) => {
 logDamage('latte stains');
 
 */
-// NB: the imported Interfaces contain their Specific Props as 
+/*
+
+// NB: the imported Interfaces contain their Specific Props as
 // well as those inherited from other Interfaces.
-var favLibrarian = new libAppClasses_1.UniversityLibrarian();
-var ref = new libAppClasses_1.ReferenceItem('Blood and Tears', 2019);
+
+let favLibrarian: Librarian = new UniversityLibrarian();
+
+
+let ref: ReferenceItem = new ReferenceItem('Blood and Tears', 2019);
 ref.printItem();
+
 // Denotes a Setter.
 ref.publisher = 'Random Publisher';
+
 // Denotes a getter.
 console.log(ref.publisher);
+
+*/
+var refBook = new libAppClasses_1.Encyclopedia('BioPedia', 1923);
+refBook.printItem();
 //# sourceMappingURL=app.js.map

@@ -37,4 +37,10 @@ class ReferenceItem {
     }
 }
 
-export { UniversityLibrarian, ReferenceItem };
+
+// Demo: Extending classes:
+class Encyclopedia extends ReferenceItem {
+    edition: number;
+}
+
+export { UniversityLibrarian, ReferenceItem, Encyclopedia };

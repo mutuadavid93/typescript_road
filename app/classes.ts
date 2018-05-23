@@ -189,3 +189,32 @@ class Fruit {
 // declared and all the Subclasses of that class.
 //
 // They are not Publicly available on instance Objects.
+
+
+
+
+
+
+
+
+
+
+// Inheritance:
+//
+
+// Defn: It's a means for one class to Share it's member 
+// definitions with one or more Subclasses.
+
+// If the Subclass has a constructor then it MUST invoke the 
+// super() method inside it's constructor.
+
+// If the parent constructor expected some Params then those 
+// ones are passed inside the super() call too.
+
+// If the parent constructor expected some Params and the child 
+// Subclass didn't have a constructor, then the parent 
+// constructor's Params MUST be passed into the instance creations
+// of the child class.
+
+// Reason: Because the Subclass implicitly uses the parent class's 
+// constructor!!
