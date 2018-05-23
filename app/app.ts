@@ -1,7 +1,7 @@
 
 import { Category } from './libAppEnums';
 import { Book, DamagedLogger, Author, Librarian } from './libAppInterfaces';
-import { UniversityLibrarian } from './libAppClasses';
+import { UniversityLibrarian, ReferenceItem } from './libAppClasses';
 
 function GetAllBooks(): Book[] {
 
@@ -209,6 +209,13 @@ logDamage('latte stains');
 // well as those inherited from other Interfaces.
 
 let favLibrarian: Librarian = new UniversityLibrarian();
-favLibrarian.name = 'Ben';
 
-favLibrarian.assistCustomer('Mfupa');
+
+let ref: ReferenceItem = new ReferenceItem('Blood and Tears', 2019);
+ref.printItem();
+
+// Denotes a Setter.
+ref.publisher = 'Random Publisher';
+
+// Denotes a getter.
+console.log(ref.publisher);
