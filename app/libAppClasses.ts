@@ -19,7 +19,7 @@ class ReferenceItem {
     private _publisher: string;
     static department: string = "Mining";
 
-    constructor(public title: string, private year: number) {
+    constructor(public title: string, protected year: number) {
         console.log('Creating a new ReferenceItem...');
     }
 
@@ -40,7 +40,21 @@ class ReferenceItem {
 
 // Demo: Extending classes:
 class Encyclopedia extends ReferenceItem {
-    edition: number;
+
+    constructor(newTitle: string, newYear: number, public edition: number) {
+
+        // invoke parent class's constructor initializing it's variables.
+        super(newTitle, newYear); 
+    }
+
+    // Override the Parent class's Methods.
+    printItem(): void {
+        super.printItem(); // invoke printItem() from the Parent class.
+
+        // Move on to do extra work with printItem().
+        // Demo: Protected year ReferenceItem class's property.
+        console.log(`Edition ${this.edition} (${this.year}).`);
+    }
 }
 
 export { UniversityLibrarian, ReferenceItem, Encyclopedia };

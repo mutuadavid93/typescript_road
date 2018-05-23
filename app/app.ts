@@ -226,5 +226,5 @@ console.log(ref.publisher);
 
 
 
-let refBook = new Encyclopedia('BioPedia', 1923);
+let refBook = new Encyclopedia('BioPedia', 1923, 6);
 refBook.printItem();

@@ -184,6 +184,6 @@ ref.publisher = 'Random Publisher';
 console.log(ref.publisher);
 
 */
-var refBook = new libAppClasses_1.Encyclopedia('BioPedia', 1923);
+var refBook = new libAppClasses_1.Encyclopedia('BioPedia', 1923, 6);
 refBook.printItem();
 //# sourceMappingURL=app.js.map
