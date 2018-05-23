@@ -225,6 +225,30 @@ console.log(ref.publisher);
 */
 
 
+/*
 
-let refBook = new Encyclopedia('BioPedia', 1923, 6);
-refBook.printItem();
+let refBook: ReferenceItem = new Encyclopedia('BioPedia', 1923, 6);
+refBook.printCitation();
+
+*/
+
+
+// Demo: class expression.
+let Newspaper = class extends ReferenceItem {
+    
+    printCitation(): void {
+        console.log(`Newspaper: ${this.title}`);
+    }
+
+}
+
+let myPaper = new Newspaper('The Standard', 2018);
+myPaper.printCitation();
+
+
+// Demo: Complex classExpression:
+class Novel extends class { title: string } {
+    mainCharacter: string;
+}
+
+let favNovel = new Novel();

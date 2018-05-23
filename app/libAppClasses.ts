@@ -14,7 +14,8 @@ class UniversityLibrarian implements Librarian {
 }
 
 // Demo: Classes.
-class ReferenceItem {
+// Demo: Abstract Classes:
+abstract class ReferenceItem {
 
     private _publisher: string;
     static department: string = "Mining";
@@ -35,6 +36,9 @@ class ReferenceItem {
         console.log(`${this.title} was published in ${this.year}.`);
         console.log(`Department of ${ReferenceItem.department}.`);
     }
+
+    // An abstract method.
+    abstract printCitation(): void;
 }
 
 
@@ -54,6 +58,11 @@ class Encyclopedia extends ReferenceItem {
         // Move on to do extra work with printItem().
         // Demo: Protected year ReferenceItem class's property.
         console.log(`Edition ${this.edition} (${this.year}).`);
+    }
+
+    // Implement the abstract class inside derived class.
+    printCitation(): void {
+        console.log(`${this.title} - ${this.year}`);
     }
 }
 

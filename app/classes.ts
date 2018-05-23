@@ -218,3 +218,79 @@ class Fruit {
 
 // Reason: Because the Subclass implicitly uses the parent class's 
 // constructor!!
+
+
+
+
+
+
+
+
+
+// Abstract Classes:
+//
+
+// Usage: Abstract classes can be used to store functionality
+// that can be shared across multiple derived classes.
+
+// Defn: Base/Parent classes that can not be instantiated.
+
+// Unlike Interfaces Abstract classes may contain implementation
+// details and accesors.
+
+// You can as well declare Abstract methods that are not 
+// implemented.
+//
+// NB: Abstract methods MUST be implemented in derived class.
+
+// Abstract classes CAN'T be instantiated!
+//
+// Instead you instantiate their derived classes.
+
+
+
+
+
+
+
+
+
+
+
+// Class Expressions:
+//
+
+// They are a feature in ECMAScript2015
+
+// Defn: They define a class however they can only be used where 
+// you normally use other expressions.
+
+// NB: The className is optional in a class expression and will 
+// only be available within a class if one is provided.
+// 
+
+
+// @Example:
+let Ovacado = class extends Fruit {
+
+    ripenning(): void {
+        console.log(`${this.name} is ripe.`);
+    }
+
+}
+
+// Instantiate the class expression.
+let myOvacado = new Ovacado('Ovacado');
+myOvacado.ripenning();
+
+
+
+// @Complex Example:
+
+// NB: The Base/Parent class will have one property named title.
+//
+// classExpressionName class extends that Base class and adds one 
+// more property named bossname.
+class classExpressionName extends class /* { Base Class Body } */{ title: string } { 
+    bossname: string;
+}
