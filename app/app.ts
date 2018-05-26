@@ -1,9 +1,10 @@
 
 import { Category } from './libAppEnums';
-import { Book, DamagedLogger, Author, Librarian } from './libAppInterfaces';
+import { Book, DamagedLogger, Author, Librarian, Magazine } from './libAppInterfaces';
 import { UniversityLibrarian, ReferenceItem } from './libAppClasses';
 import { CalculateLateFee as CalcFee, MaxBooksAllowed, Purge } from "./lib/utilityLibAppFunctions";
 
+import Shelf from './libAppShelf';
 
 // Import a Default Module Named Encylopedia.
 import refBook from './libAppEncyclopedia';
@@ -301,6 +302,11 @@ let inventory: Array<Book> = [
     },
 ];
 
+
+
+
+/*
+
 // Invoke the Generic Function Purge.
 let purgedBooks: Array<Book> = Purge<Book>(inventory);
 
@@ -309,3 +315,50 @@ purgedBooks.forEach(book => console.log(book.title));
 
 // Demo: Generics can be used with another Type.
 let purgedArryaNums: number[] = Purge<number>([1, 2, 5, 8]); // [ 5, 8 ]
+
+*/
+
+// Store all inventory Books in a bookShelf:
+//
+// i.e. create a new instance of a Shelf Generic Class.
+
+let bookShelf: Shelf<Book> = new Shelf<Book>();
+
+// Using the Shelf's add() Method, add each book to the Shelf.
+inventory.forEach(book => bookShelf.add(book));
+
+// Get the first Book from the Shelf.
+let firstBook: Book = bookShelf.getFirst();
+
+
+
+
+
+
+// Demo: Using another Array of Magazines but the 
+// same Shelf Generic Class.
+
+// NB: Each Object in the Array implements the Magazine Interface
+// explicitly.
+let magazines: Array<Magazine> = [
+    {title: 'Jeeper Creeper Ways', publisher: 'Nifty Eyes'},
+    {title: 'Moon Life', publisher: 'Jay Z'},
+    {title: 'Grizzly Bear', publisher: 'Memphis Rookie'},
+];
+
+// Add a magazine into a new Shelf.
+// i.e. create another Shelf instance.
+let magazineShelf: Shelf<Magazine> = new Shelf<Magazine>();
+
+// Add all the available Magazines into a Magazine Shelf.
+magazines.forEach(mag => magazineShelf.add(mag));
+
+let firstMagazine: Magazine = magazineShelf.getFirst();
+
+// Using Help from "ShelfItem Generic Constraint", let's print 
+// out all book titles.
+magazineShelf.printTitles();
+
+// find a Book in the Book's Shelf.
+let hackingBook = bookShelf.find('Rust Language');
+console.log(`${hackingBook.title} (${hackingBook.author})`);

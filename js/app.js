@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var libAppEnums_1 = require("./libAppEnums");
 var libAppClasses_1 = require("./libAppClasses");
-var utilityLibAppFunctions_1 = require("./lib/utilityLibAppFunctions");
+var libAppShelf_1 = require("./libAppShelf");
 // Import a Default Module Named Encylopedia.
 var libAppEncyclopedia_1 = require("./libAppEncyclopedia");
 // Consume Encyclopedia Default module ASAP.
@@ -240,10 +240,45 @@ var inventory = [
         available: true, category: libAppEnums_1.Category.BasketBall
     },
 ];
+/*
+
 // Invoke the Generic Function Purge.
-var purgedBooks = utilityLibAppFunctions_1.Purge(inventory);
+let purgedBooks: Array<Book> = Purge<Book>(inventory);
+
 // Loop to return the book titles.
-purgedBooks.forEach(function (book) { return console.log(book.title); });
+purgedBooks.forEach(book => console.log(book.title));
+
 // Demo: Generics can be used with another Type.
-var purgedArryaNums = utilityLibAppFunctions_1.Purge([1, 2, 5, 8]); // [ 5, 8 ]
+let purgedArryaNums: number[] = Purge<number>([1, 2, 5, 8]); // [ 5, 8 ]
+
+*/
+// Store all inventory Books in a bookShelf:
+//
+// i.e. create a new instance of a Shelf Generic Class.
+var bookShelf = new libAppShelf_1.default();
+// Using the Shelf's add() Method, add each book to the Shelf.
+inventory.forEach(function (book) { return bookShelf.add(book); });
+// Get the first Book from the Shelf.
+var firstBook = bookShelf.getFirst();
+// Demo: Using another Array of Magazines but the 
+// same Shelf Generic Class.
+// NB: Each Object in the Array implements the Magazine Interface
+// explicitly.
+var magazines = [
+    { title: 'Jeeper Creeper Ways', publisher: 'Nifty Eyes' },
+    { title: 'Moon Life', publisher: 'Jay Z' },
+    { title: 'Grizzly Bear', publisher: 'Memphis Rookie' },
+];
+// Add a magazine into a new Shelf.
+// i.e. create another Shelf instance.
+var magazineShelf = new libAppShelf_1.default();
+// Add all the available Magazines into a Magazine Shelf.
+magazines.forEach(function (mag) { return magazineShelf.add(mag); });
+var firstMagazine = magazineShelf.getFirst();
+// Using Help from "ShelfItem Generic Constraint", let's print 
+// out all book titles.
+magazineShelf.printTitles();
+// find a Book in the Book's Shelf.
+var hackingBook = bookShelf.find('Rust Language');
+console.log(hackingBook.title + " (" + hackingBook.author + ")");
 //# sourceMappingURL=app.js.map
