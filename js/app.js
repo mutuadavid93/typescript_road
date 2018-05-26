@@ -1,17 +1,8 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var libAppEnums_1 = require("./libAppEnums");
 var libAppClasses_1 = require("./libAppClasses");
+var utilityLibAppFunctions_1 = require("./lib/utilityLibAppFunctions");
 // Import a Default Module Named Encylopedia.
 var libAppEncyclopedia_1 = require("./libAppEncyclopedia");
 // Consume Encyclopedia Default module ASAP.
@@ -207,30 +198,52 @@ let refBook: ReferenceItem = new Encyclopedia('BioPedia', 1923, 6);
 refBook.printCitation();
 
 */
+/*
+
 // Demo: class expression.
-var Newspaper = /** @class */ (function (_super) {
-    __extends(class_1, _super);
-    function class_1() {
-        return _super !== null && _super.apply(this, arguments) || this;
+let Newspaper = class extends ReferenceItem {
+    
+    printCitation(): void {
+        console.log(`Newspaper: ${this.title}`);
     }
-    class_1.prototype.printCitation = function () {
-        console.log("Newspaper: " + this.title);
-    };
-    return class_1;
-}(libAppClasses_1.ReferenceItem));
-var myPaper = new Newspaper('The Standard', 2018);
+
+}
+
+let myPaper = new Newspaper('The Standard', 2018);
 // myPaper.printCitation(); // invokes Reference Class's Method.
+
+
 // Demo: Complex classExpression:
-var Novel = /** @class */ (function (_super) {
-    __extends(Novel, _super);
-    function Novel() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Novel;
-}(/** @class */ (function () {
-    function class_2() {
-    }
-    return class_2;
-}())));
-var favNovel = new Novel();
+class Novel extends class { title: string } {
+    mainCharacter: string;
+}
+
+let favNovel = new Novel();
+
+*/
+// Demo: Usage of Generic Functions.
+var inventory = [
+    {
+        id: 10, title: 'Cobol Programming', author: 'Jr. Smith',
+        available: true, category: libAppEnums_1.Category.BasketBall
+    },
+    {
+        id: 12, title: 'Code for Noobs', author: 'JJWatt Lonzo',
+        available: true, category: libAppEnums_1.Category.BasketBall
+    },
+    {
+        id: 13, title: 'Dummy Designers', author: 'PJ. Tucker',
+        available: true, category: libAppEnums_1.Category.IceHockey
+    },
+    {
+        id: 14, title: 'Rust Language', author: 'CJ. McCollum',
+        available: true, category: libAppEnums_1.Category.BasketBall
+    },
+];
+// Invoke the Generic Function Purge.
+var purgedBooks = utilityLibAppFunctions_1.Purge(inventory);
+// Loop to return the book titles.
+purgedBooks.forEach(function (book) { return console.log(book.title); });
+// Demo: Generics can be used with another Type.
+var purgedArryaNums = utilityLibAppFunctions_1.Purge([1, 2, 5, 8]); // [ 5, 8 ]
 //# sourceMappingURL=app.js.map

@@ -2,6 +2,8 @@
 import { Category } from './libAppEnums';
 import { Book, DamagedLogger, Author, Librarian } from './libAppInterfaces';
 import { UniversityLibrarian, ReferenceItem } from './libAppClasses';
+import { CalculateLateFee as CalcFee, MaxBooksAllowed, Purge } from "./lib/utilityLibAppFunctions";
+
 
 // Import a Default Module Named Encylopedia.
 import refBook from './libAppEncyclopedia';
@@ -241,6 +243,8 @@ console.log(ref.publisher);
 */
 
 
+
+
 /*
 
 let refBook: ReferenceItem = new Encyclopedia('BioPedia', 1923, 6);
@@ -248,6 +252,9 @@ refBook.printCitation();
 
 */
 
+
+
+/*
 
 // Demo: class expression.
 let Newspaper = class extends ReferenceItem {
@@ -268,3 +275,37 @@ class Novel extends class { title: string } {
 }
 
 let favNovel = new Novel();
+
+*/
+
+
+
+
+// Demo: Usage of Generic Functions.
+let inventory: Array<Book> = [
+    {
+        id: 10, title: 'Cobol Programming', author: 'Jr. Smith', 
+        available: true, category: Category.BasketBall
+    },
+    {
+        id: 12, title: 'Code for Noobs', author: 'JJWatt Lonzo', 
+        available: true, category: Category.BasketBall
+    },
+    {
+        id: 13, title: 'Dummy Designers', author: 'PJ. Tucker', 
+        available: true, category: Category.IceHockey
+    },
+    {
+        id: 14, title: 'Rust Language', author: 'CJ. McCollum', 
+        available: true, category: Category.BasketBall
+    },
+];
+
+// Invoke the Generic Function Purge.
+let purgedBooks: Array<Book> = Purge<Book>(inventory);
+
+// Loop to return the book titles.
+purgedBooks.forEach(book => console.log(book.title));
+
+// Demo: Generics can be used with another Type.
+let purgedArryaNums: number[] = Purge<number>([1, 2, 5, 8]); // [ 5, 8 ]
