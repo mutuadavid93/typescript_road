@@ -7,7 +7,7 @@
         "strictNullChecks": true, 
         "noImplicitAny": true,
         /*"removeComments": true,*/
-        "module": "commonjs",
+        /*"module": "commonjs",*/
         "moduleResolution": "node"
     },
 
@@ -19,5 +19,13 @@
     // Processes All Typescript Files.
     /*"includes": [
         // "./**/ //**/ 
-    /*]*/
+    /*],*/
+
+    /*
+    // NB: files and exclude options are mutual. They can't exist at the same time.
+        ,"exclude": [
+            "node_modules",
+            "lib"
+        ]
+    */
 }

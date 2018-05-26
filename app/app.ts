@@ -9,6 +9,9 @@ import Shelf from './libAppShelf';
 // Import a Default Module Named Encylopedia.
 import refBook from './libAppEncyclopedia';
 
+// Import External Libraries Typings:
+import  *  as $ from 'jquery';
+
 
 // Consume Encyclopedia Default module ASAP.
 let reference = new refBook('Bleed Green Bk', 2015, 3);
@@ -58,18 +61,18 @@ function GetAllBooks(): Book[] {
     return books;
 }
 
-function logFirstAvailable (books: any[]): void {
+function logFirstAvailable (books: Book[]): void {
 
     // Store the number of Books in the Array
     let numberOfBooks:number = books.length;
     let firstAvailableBkTitle:string = '';
 
-    for (let curBook of books) {
-        if(curBook.available) {
-            firstAvailableBkTitle = curBook.title;
-            break;
+    $.each(books, function (index, item) {
+        if(item.available) { 
+            firstAvailableBkTitle = item.title;
+            return;
         }
-    }
+    }); // jQuery each Loop.
 
     console.log(`Total Books: ${numberOfBooks}`);
     console.log(`First Available Book: ${firstAvailableBkTitle}`);
@@ -362,3 +365,6 @@ magazineShelf.printTitles();
 // find a Book in the Book's Shelf.
 let hackingBook = bookShelf.find('Rust Language');
 console.log(`${hackingBook.title} (${hackingBook.author})`);
+
+// Test jQuery Typings Imports Working.
+logFirstAvailable(inventory.reverse());

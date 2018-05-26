@@ -5,6 +5,8 @@ var libAppClasses_1 = require("./libAppClasses");
 var libAppShelf_1 = require("./libAppShelf");
 // Import a Default Module Named Encylopedia.
 var libAppEncyclopedia_1 = require("./libAppEncyclopedia");
+// Import External Libraries Typings:
+var $ = require("jquery");
 // Consume Encyclopedia Default module ASAP.
 var reference = new libAppEncyclopedia_1.default('Bleed Green Bk', 2015, 3);
 // Set a Static Variable to a new Value.
@@ -44,13 +46,12 @@ function logFirstAvailable(books) {
     // Store the number of Books in the Array
     var numberOfBooks = books.length;
     var firstAvailableBkTitle = '';
-    for (var _i = 0, books_1 = books; _i < books_1.length; _i++) {
-        var curBook = books_1[_i];
-        if (curBook.available) {
-            firstAvailableBkTitle = curBook.title;
-            break;
+    $.each(books, function (index, item) {
+        if (item.available) {
+            firstAvailableBkTitle = item.title;
+            return;
         }
-    }
+    }); // jQuery each Loop.
     console.log("Total Books: " + numberOfBooks);
     console.log("First Available Book: " + firstAvailableBkTitle);
 }
@@ -281,4 +282,6 @@ magazineShelf.printTitles();
 // find a Book in the Book's Shelf.
 var hackingBook = bookShelf.find('Rust Language');
 console.log(hackingBook.title + " (" + hackingBook.author + ")");
+// Test jQuery Typings Imports Working.
+logFirstAvailable(inventory.reverse());
 //# sourceMappingURL=app.js.map

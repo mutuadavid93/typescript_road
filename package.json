@@ -10,6 +10,8 @@
   "author": "David Mutua",
   "license": "ISC",
   "dependencies": {
+    "@types/jquery": "^3.3.2",
+    "jquery": "^3.3.1",
     "systemjs": "^0.21.3"
   }
 }
