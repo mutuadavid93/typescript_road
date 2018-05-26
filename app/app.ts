@@ -1,7 +1,23 @@
 
 import { Category } from './libAppEnums';
 import { Book, DamagedLogger, Author, Librarian } from './libAppInterfaces';
-import { UniversityLibrarian, ReferenceItem, Encyclopedia } from './libAppClasses';
+import { UniversityLibrarian, ReferenceItem } from './libAppClasses';
+
+// Import a Default Module Named Encylopedia.
+import refBook from './libAppEncyclopedia';
+
+
+// Consume Encyclopedia Default module ASAP.
+let reference = new refBook('Bleed Green Bk', 2015, 3);
+
+// Set a Static Variable to a new Value.
+ReferenceItem.department = 'Zoombie Control';
+
+reference.printItem();
+
+
+
+
 
 function GetAllBooks(): Book[] {
 
@@ -243,7 +259,7 @@ let Newspaper = class extends ReferenceItem {
 }
 
 let myPaper = new Newspaper('The Standard', 2018);
-myPaper.printCitation();
+// myPaper.printCitation(); // invokes Reference Class's Method.
 
 
 // Demo: Complex classExpression:

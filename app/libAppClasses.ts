@@ -21,7 +21,7 @@ abstract class ReferenceItem {
     static department: string = "Mining";
 
     constructor(public title: string, protected year: number) {
-        console.log('Creating a new ReferenceItem...');
+        // console.log('Creating a new ReferenceItem...');
     }
 
     get publisher(): string {
@@ -41,29 +41,4 @@ abstract class ReferenceItem {
     abstract printCitation(): void;
 }
 
-
-// Demo: Extending classes:
-class Encyclopedia extends ReferenceItem {
-
-    constructor(newTitle: string, newYear: number, public edition: number) {
-
-        // invoke parent class's constructor initializing it's variables.
-        super(newTitle, newYear); 
-    }
-
-    // Override the Parent class's Methods.
-    printItem(): void {
-        super.printItem(); // invoke printItem() from the Parent class.
-
-        // Move on to do extra work with printItem().
-        // Demo: Protected year ReferenceItem class's property.
-        console.log(`Edition ${this.edition} (${this.year}).`);
-    }
-
-    // Implement the abstract class inside derived class.
-    printCitation(): void {
-        console.log(`${this.title} - ${this.year}`);
-    }
-}
-
-export { UniversityLibrarian, ReferenceItem, Encyclopedia };
+export { UniversityLibrarian, ReferenceItem };

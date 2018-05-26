@@ -12,6 +12,13 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var libAppEnums_1 = require("./libAppEnums");
 var libAppClasses_1 = require("./libAppClasses");
+// Import a Default Module Named Encylopedia.
+var libAppEncyclopedia_1 = require("./libAppEncyclopedia");
+// Consume Encyclopedia Default module ASAP.
+var reference = new libAppEncyclopedia_1.default('Bleed Green Bk', 2015, 3);
+// Set a Static Variable to a new Value.
+libAppClasses_1.ReferenceItem.department = 'Zoombie Control';
+reference.printItem();
 function GetAllBooks() {
     // Book List.
     // NB: enum Property Value Category.BasketBall = Number it's enums value 0.
@@ -212,7 +219,7 @@ var Newspaper = /** @class */ (function (_super) {
     return class_1;
 }(libAppClasses_1.ReferenceItem));
 var myPaper = new Newspaper('The Standard', 2018);
-myPaper.printCitation();
+// myPaper.printCitation(); // invokes Reference Class's Method.
 // Demo: Complex classExpression:
 var Novel = /** @class */ (function (_super) {
     __extends(Novel, _super);
